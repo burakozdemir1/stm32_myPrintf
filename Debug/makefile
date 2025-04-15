@@ -34,37 +34,37 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := BOOTLOADER_MY_PRINTF
+BUILD_ARTIFACT_NAME := STM32F0_BOOTLOADER_APP
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-BOOTLOADER_MY_PRINTF.elf \
+STM32F0_BOOTLOADER_APP.elf \
 
 MAP_FILES += \
-BOOTLOADER_MY_PRINTF.map \
+STM32F0_BOOTLOADER_APP.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-BOOTLOADER_MY_PRINTF.list \
+STM32F0_BOOTLOADER_APP.list \
 
 OBJCOPY_HEX += \
-BOOTLOADER_MY_PRINTF.hex \
+STM32F0_BOOTLOADER_APP.hex \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: BOOTLOADER_MY_PRINTF.elf secondary-outputs
+main-build: STM32F0_BOOTLOADER_APP.elf secondary-outputs
 
 # Tool invocations
-BOOTLOADER_MY_PRINTF.elf BOOTLOADER_MY_PRINTF.map: $(OBJS) $(USER_OBJS) C:\denemeler2\BOOTLOADER_MY_PRINTF\STM32F072RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "BOOTLOADER_MY_PRINTF.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\denemeler2\BOOTLOADER_MY_PRINTF\STM32F072RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BOOTLOADER_MY_PRINTF.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+STM32F0_BOOTLOADER_APP.elf STM32F0_BOOTLOADER_APP.map: $(OBJS) $(USER_OBJS) C:\denemeler2\STM32F0_BOOTLOADER_APP\STM32F072RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "STM32F0_BOOTLOADER_APP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\denemeler2\STM32F0_BOOTLOADER_APP\STM32F072RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F0_BOOTLOADER_APP.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -73,19 +73,19 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-BOOTLOADER_MY_PRINTF.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "BOOTLOADER_MY_PRINTF.list"
+STM32F0_BOOTLOADER_APP.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "STM32F0_BOOTLOADER_APP.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-BOOTLOADER_MY_PRINTF.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "BOOTLOADER_MY_PRINTF.hex"
+STM32F0_BOOTLOADER_APP.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "STM32F0_BOOTLOADER_APP.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) BOOTLOADER_MY_PRINTF.elf BOOTLOADER_MY_PRINTF.hex BOOTLOADER_MY_PRINTF.list BOOTLOADER_MY_PRINTF.map default.size.stdout
+	-$(RM) STM32F0_BOOTLOADER_APP.elf STM32F0_BOOTLOADER_APP.hex STM32F0_BOOTLOADER_APP.list STM32F0_BOOTLOADER_APP.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX)

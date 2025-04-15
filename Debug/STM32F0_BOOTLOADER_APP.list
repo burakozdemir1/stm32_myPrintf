@@ -1,5 +1,5 @@
 
-BOOTLOADER_MY_PRINTF.elf:     file format elf32-littlearm
+STM32F0_BOOTLOADER_APP.elf:     file format elf32-littlearm
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>BOOTLOADER_MY_PRINTF</name>
+	<name>STM32F0_BOOTLOADER_APP</name>
 	<comment></comment>
 	<projects>
 	</projects>
